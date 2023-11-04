@@ -1,4 +1,6 @@
 import imgData from './../../utils/imgData';
+import { FaImage } from 'react-icons/fa';
+
 const Gallery = () => {
     return (
         <div className="g-container">
@@ -18,6 +20,12 @@ const Gallery = () => {
                                 </div>
                             )
                         })}
+                        <div className="g-upload-container">
+                            <div className="g-upload">
+                                <FaImage className='g-up-icon' />
+                            </div>
+                            <p className='g-add-img'>Add Images</p>
+                        </div>
                     </div>
                 </div>
             </div>

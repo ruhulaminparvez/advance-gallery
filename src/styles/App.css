@@ -60,3 +60,25 @@
   object-fit: cover;
   border-radius: 10px;
 }
+
+.g-upload-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.g-upload .g-up-icon {
+  font-size: 3rem;
+  color: #000;
+}
+
+.g-add-img {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+}
