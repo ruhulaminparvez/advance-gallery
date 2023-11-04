@@ -1,18 +1,26 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import imgData from './../../utils/imgData';
 import { FaImage } from 'react-icons/fa';
 
 const Gallery = () => {
-    const [uploadedImage, setUploadedImage] = useState(null);
+    const [uploadedImage, setUploadedImage] = useState(imgData);
     const [selectedItems, setSelectedItems] = useState([]);
     const inputRef = useRef();
 
-    console.log(uploadedImage);
-
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
-        setUploadedImage(file);
+        const newImage = {
+            id: uploadedImage.length + 1,
+            img: URL.createObjectURL(file),
+            alt: file.name,
+            title: file.name
+        };
+        setUploadedImage([...uploadedImage, newImage]);
     };
+
+    useEffect(() => {
+    }, [uploadedImage]);
+
     const handleContainerClick = () => {
         inputRef.current.click();
     };
@@ -42,6 +50,8 @@ const Gallery = () => {
                         <React.Fragment>
                             <h2>{selectedItems?.length} Selected</h2>
                             <button className='g-dtl-btn' onClick={() => {
+                                const updatedUploadedImage = uploadedImage.filter(item => !isChecked(item.id));
+                                setUploadedImage(updatedUploadedImage);
                                 setSelectedItems([]);
                             }}>
                                 {selectedItems?.length === 1 ? 'Delete File' : 'Delete Files'}
@@ -54,7 +64,7 @@ const Gallery = () => {
             <div className="g-lower">
                 <div className="g-item">
                     <div className="g-gallery">
-                        {imgData?.map((item, index) => {
+                        {uploadedImage?.map((item, index) => {
                             return (
                                 <div
                                     key={index}
@@ -67,6 +77,7 @@ const Gallery = () => {
                                         className="g-checkbox"
                                         value={item.id}
                                         checked={isChecked(item.id)}
+                                        onChange={() => toggleCheckbox(item.id)}
                                         style={{ display: isChecked(item.id) && 'block' }}
                                     />
                                     <img src={item.img} alt={item.alt} />
