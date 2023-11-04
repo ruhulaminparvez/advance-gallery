@@ -84,7 +84,7 @@ const Gallery = () => {
                                 </div>
                             )
                         })}
-                        <div className="g-upload-container" onClick={handleContainerClick}>
+                        <label className="g-upload-container" htmlFor="imageUpload" onClick={handleContainerClick}>
                             <div className="g-upload">
                                 <input
                                     type="file"
@@ -92,14 +92,11 @@ const Gallery = () => {
                                     accept="image/*"
                                     onChange={handleImageUpload}
                                     style={{ display: 'none' }}
-                                    ref={inputRef}
                                 />
-                                <label htmlFor="imageUpload">
-                                    <FaImage className='g-up-icon' />
-                                </label>
+                                <FaImage className='g-up-icon' />
                             </div>
                             <p className='g-add-img'>Add Images</p>
-                        </div>
+                        </label>
                     </div>
                 </div>
             </div>
