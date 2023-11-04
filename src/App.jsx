@@ -1,10 +1,11 @@
+import Gallery from './components/gallery/Gallery'
 import './styles/App.css'
 
 function App() {
 
   return (
     <div>
-      <h2>Hello</h2>
+      <Gallery />
     </div>
   )
 }
