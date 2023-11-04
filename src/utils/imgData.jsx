@@ -10,7 +10,7 @@ import imgNine from '../assets/img/image-9.webp';
 import imgTen from '../assets/img/image-10.jpeg';
 import imgEleven from '../assets/img/image-11.jpeg';
 
-export const imgData = [
+const imgData = [
     {
         id: 1,
         img: imgOne,
@@ -78,3 +78,5 @@ export const imgData = [
         title: 'Image 11'
     }
 ]
+
+export default imgData;

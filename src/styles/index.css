@@ -1,7 +1,7 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color: #000000;
-  background-color: #ffffff;
+  background: aliceblue;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
