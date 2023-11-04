@@ -1,9 +1,10 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import imgData from './../../utils/imgData';
 import { FaImage } from 'react-icons/fa';
 
 const Gallery = () => {
     const [uploadedImage, setUploadedImage] = useState(null);
+    const [selectedItems, setSelectedItems] = useState([]);
     const inputRef = useRef();
 
     console.log(uploadedImage);
@@ -16,11 +17,37 @@ const Gallery = () => {
         inputRef.current.click();
     };
 
+    const toggleCheckbox = (item) => {
+        const selectedIndex = selectedItems.indexOf(item);
+        if (selectedIndex === -1) {
+            setSelectedItems([...selectedItems, item]);
+        } else {
+            const updatedSelectedItems = [...selectedItems];
+            updatedSelectedItems.splice(selectedIndex, 1);
+            setSelectedItems(updatedSelectedItems);
+        }
+    };
+
+    const isChecked = (item) => {
+        return selectedItems.indexOf(item) !== -1;
+    };
+
     return (
         <div className="g-container">
             <div className="g-upper">
                 <div className="g-title">
-                    <h2>Gallery</h2>
+                    {selectedItems?.length === 0 ?
+                        <h2>Gallery</h2>
+                        :
+                        <React.Fragment>
+                            <h2>{selectedItems?.length} Selected</h2>
+                            <button className='g-dtl-btn' onClick={() => {
+                                setSelectedItems([]);
+                            }}>
+                                {selectedItems?.length === 1 ? 'Delete File' : 'Delete Files'}
+                            </button>
+                        </React.Fragment>
+                    }
                 </div>
                 <hr className="g-line" />
             </div>
@@ -29,7 +56,19 @@ const Gallery = () => {
                     <div className="g-gallery">
                         {imgData?.map((item, index) => {
                             return (
-                                <div key={index} className='g-img'>
+                                <div
+                                    key={index}
+                                    className={`g-img ${isChecked(item.id) ? 'selected' : ''}`}
+                                    onClick={() => toggleCheckbox(item.id)}
+                                >
+                                    <input
+                                        type="checkbox"
+                                        id={`checkbox-${index}`}
+                                        className="g-checkbox"
+                                        value={item.id}
+                                        checked={isChecked(item.id)}
+                                        style={{ display: isChecked(item.id) && 'block' }}
+                                    />
                                     <img src={item.img} alt={item.alt} />
                                 </div>
                             )

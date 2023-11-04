@@ -16,13 +16,21 @@
 }
 
 .g-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.5rem;
   font-weight: 600;
   padding: 0 2rem;
 }
 
 .g-title h2 {
-  padding-top: 1rem;
+  padding-top: 0.2rem;
+}
+
+.g-line {
+  width: 100%;
+  border: 0.5px solid #ccc;
 }
 
 .g-lower {
@@ -95,13 +103,49 @@
 
 .g-upload .g-up-icon {
   font-size: 3rem;
-  color: #000;
+  color: #ccc;
   cursor: pointer;
 }
 
 .g-add-img {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #000;
+  color: #ccc;
   text-transform: uppercase;
+}
+
+.g-checkbox {
+  display: none;
+}
+
+.g-img input[type='checkbox'] {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  cursor: pointer;
+  z-index: 10;
+  transform: scale(1.5);
+}
+
+.g-img:hover .g-checkbox {
+  display: block;
+}
+
+.selected {
+  opacity: 0.6;
+}
+
+.g-dtl-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #FF6969;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
 }
