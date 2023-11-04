@@ -5,6 +5,7 @@ import { FaImage } from 'react-icons/fa';
 const Gallery = () => {
     const [uploadedImage, setUploadedImage] = useState(imgData);
     const [selectedItems, setSelectedItems] = useState([]);
+    const [draggedItem, setDraggedItem] = useState(null);
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -33,6 +34,27 @@ const Gallery = () => {
 
     const isChecked = (item) => {
         return selectedItems.indexOf(item) !== -1;
+    };
+
+    const handleDragStart = (e, item) => {
+        setDraggedItem(item);
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+    };
+
+    const handleDrop = (e, item) => {
+        e.preventDefault();
+        const updatedImages = [...uploadedImage];
+        const draggedItemIndex = updatedImages.findIndex((img) => img.id === draggedItem.id);
+        const dropItemIndex = updatedImages.findIndex((img) => img.id === item.id);
+        [updatedImages[draggedItemIndex], updatedImages[dropItemIndex]] = [
+            updatedImages[dropItemIndex],
+            updatedImages[draggedItemIndex],
+        ];
+        setUploadedImage(updatedImages);
+        setDraggedItem(null);
     };
 
     return (
@@ -65,6 +87,10 @@ const Gallery = () => {
                                     key={index}
                                     className={`g-img ${isChecked(item.id) ? 'selected' : ''}`}
                                     onClick={() => toggleCheckbox(item.id)}
+                                    draggable
+                                    onDragStart={(e) => handleDragStart(e, item)}
+                                    onDragOver={(e) => handleDragOver(e, item)}
+                                    onDrop={(e) => handleDrop(e, item)}
                                 >
                                     <input
                                         type="checkbox"
