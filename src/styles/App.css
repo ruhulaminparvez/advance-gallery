@@ -41,12 +41,17 @@
 }
 
 .g-img {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid #ccc;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.g-img:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .g-img:first-child {
@@ -59,6 +64,23 @@
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.g-img:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.g-img:hover::before {
+  opacity: 1;
 }
 
 .g-upload-container {
@@ -74,6 +96,7 @@
 .g-upload .g-up-icon {
   font-size: 3rem;
   color: #000;
+  cursor: pointer;
 }
 
 .g-add-img {
