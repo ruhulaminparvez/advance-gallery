@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import imgData from './../../utils/imgData';
 import { FaImage } from 'react-icons/fa';
 
 const Gallery = () => {
     const [uploadedImage, setUploadedImage] = useState(imgData);
     const [selectedItems, setSelectedItems] = useState([]);
-    const inputRef = useRef();
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -20,10 +19,6 @@ const Gallery = () => {
 
     useEffect(() => {
     }, [uploadedImage]);
-
-    const handleContainerClick = () => {
-        inputRef.current.click();
-    };
 
     const toggleCheckbox = (item) => {
         const selectedIndex = selectedItems.indexOf(item);
@@ -84,7 +79,11 @@ const Gallery = () => {
                                 </div>
                             )
                         })}
-                        <label className="g-upload-container" htmlFor="imageUpload" onClick={handleContainerClick}>
+                        <label
+                            className="g-upload-container"
+                            htmlFor="imageUpload"
+                            onClick={(e) => e.stopPropagation()}
+                        >
                             <div className="g-upload">
                                 <input
                                     type="file"
