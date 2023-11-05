@@ -25,3 +25,13 @@ An advanced image gallery that allows users to easily rearrange images, select m
    - Host your React JS image gallery on any platform of your choice. - Done
    - Share the live URL of your task with us for assessment. - Done
 
+## Folder Structure
+1. **CSS Styles:**
+    - [CSS Style Location - ./src/styles](./src/styles/)
+2. **Components:**
+    - [Component Location - ./src/components](./src/components/)
+3. **Assets:**
+    - [Assets Location - ./src/assets](./src/assets/img/)
+4. **Default Data:**
+    - [Default Data Location - ./src/utils](./src/utils/imgData.jsx)
+
