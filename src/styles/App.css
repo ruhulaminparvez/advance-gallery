@@ -6,6 +6,9 @@
 
 .main-bg {
   padding: 10px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* css for gallery component */
